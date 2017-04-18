@@ -5,6 +5,8 @@
 
 A React component for converting URLs in a given string of text into clicking link tags.
 
+The original package was published at [OpenGov/react-autolink-text](https://github.com/OpenGov/react-autolink-text), but it seems to have been abandoned so I've published a fork to support ongoing development and keep up with new React versions.
+
 Installation
 ------------
 `npm install react-autolink-text`
