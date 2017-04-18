@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenGov/react-autolink-text.git"
+    "url": "https://github.com/schneidmaster/react-autolink-text.git"
   },
-  "bugs": "https://github.com/OpenGov/react-autolink-text/issues",
+  "bugs": "https://github.com/schneidmaster/react-autolink-text/issues",
   "license": "MIT",
   "scripts": {
     "examples": "webpack-dev-server --config examples/webpack.config.js --content-base examples --inline",
