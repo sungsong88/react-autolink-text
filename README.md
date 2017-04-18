@@ -1,7 +1,7 @@
 \<AutoLinkText /\>
 ================
 
-[![build status](https://img.shields.io/travis/OpenGov/react-autolink-text/master.svg?style=flat-square)](https://travis-ci.org/OpenGov/react-autolink-text)
+[![CircleCI](https://circleci.com/gh/schneidmaster/react-autolink-text.svg?style=shield)](https://circleci.com/gh/schneidmaster/react-autolink-text)
 
 A React component for converting URLs in a given string of text into clicking link tags.
 
@@ -9,7 +9,7 @@ The original package was published at [OpenGov/react-autolink-text](https://gith
 
 Installation
 ------------
-`npm install react-autolink-text`
+`npm install react-autolink-text2`
 
 Usage
 -----
