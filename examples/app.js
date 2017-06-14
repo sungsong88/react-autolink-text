@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AutoLinkText from 'react-autolink-text';
+import AutoLinkText from 'react-autolink-text2';
 
 class App extends React.Component {
   constructor(props) {

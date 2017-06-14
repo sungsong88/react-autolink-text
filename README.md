@@ -15,10 +15,10 @@ Usage
 -----
 ```js
 import ReactDOM from 'react-dom';
-import AutoLinkText from 'react-autolink-text';
+import AutoLinkText from 'react-autolink-text2';
 
 ReactDOM.render(
-  <AutoLinkText text="Check out this cool component: http://github.com/OpenGov/react-autolink-text" />,
+  <AutoLinkText text="Check out this cool component: http://github.com/schneidmaster/react-autolink-text2" />,
   document.body
 );
 ```
