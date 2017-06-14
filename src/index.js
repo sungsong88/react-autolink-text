@@ -1,11 +1,8 @@
 import React from 'react';
-import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import matchParser from './match_parser';
 
-export default class AutoLinkText extends React.Component {
-  shouldComponentUpdate = shouldPureComponentUpdate
-
+export default class AutoLinkText extends React.PureComponent {
   render() {
     const text = this.props.text || '';
     return (
