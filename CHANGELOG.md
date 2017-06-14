@@ -1,3 +1,12 @@
+v3.0.0
+------
+### Breaking Changes
+- Now requires React 0.14.9 or higher, or React 15.3.0 or higher
+
+### Other changes
+- Updates some documentation and examples to reflect `react-autolink-text2`
+- Removes deprecated `react-pure-render` component in favor of `React.PureComponent`
+
 v2.0.0
 ------
 ### Breaking Changes
