@@ -1,6 +1,7 @@
 \<AutoLinkText /\>
 ================
 
+[![npm](https://img.shields.io/npm/v/react-autolink-text2.svg)](https://www.npmjs.com/package/react-autolink-text2)
 [![CircleCI](https://circleci.com/gh/schneidmaster/react-autolink-text.svg?style=shield)](https://circleci.com/gh/schneidmaster/react-autolink-text)
 
 A React component for converting URLs in a given string of text into clicking link tags.
