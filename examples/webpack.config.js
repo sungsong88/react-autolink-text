@@ -15,7 +15,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'react-autolink-text': '../src/index'
+      'react-autolink-text2': '../src/index'
     }
   }
 };
