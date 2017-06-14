@@ -3,15 +3,9 @@ import ReactDOMServer from 'react-dom/server';
 import ReactTestUtils from 'react-dom/test-utils';
 import AutoLinkText from '../index';
 
-const {renderIntoDocument, createRenderer} = ReactTestUtils;
+const { renderIntoDocument } = ReactTestUtils;
 
 describe('<AutoLinkText />', function() {
-  let renderer;
-
-  beforeEach(function() {
-    renderer = createRenderer();
-  });
-
   function renderText(text, props={}) {
     return ReactDOMServer.renderToStaticMarkup(
       <AutoLinkText text={text} {...props} />
