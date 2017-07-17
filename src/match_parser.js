@@ -1,4 +1,4 @@
-import {isValidMatch} from './match_validator';
+import { isValidMatch } from './match_validator';
 import URLMatch from './url_match';
 
 // match protocol, allow in format "http://" or "mailto:". However, do not match
@@ -22,6 +22,7 @@ const urlSuffixRegex = /[-A-Za-z0-9+&@#/%=~_()|'$*[\]?!:,.;]*[-A-Za-z0-9+&@#/%=~
 
 const charBeforeProtocolRelMatchRegex = /^(.)?\/\//;
 
+/* eslint-disable indent */
 const urlRegex = [
   '(?:', // parens to cover match for protocol (optional), and domain
     '(',  // *** Capturing group $1, for a protocol-prefixed url (ex: http://google.com)
@@ -48,6 +49,7 @@ const urlRegex = [
 
   '(?:' + urlSuffixRegex.source + ')?',  // match for path, query string, and/or hash anchor - optional
 ].join('');
+/* eslint-enable indent */
 
 export default function(text='') {
   const regex = new RegExp(urlRegex, 'gi');
@@ -73,7 +75,7 @@ export default function(text='') {
     }
 
     if (isValidMatch(matchedText, protocolUrlMatch, protocolRelativeMatch)) {
-      let position = {start: match.index, end: regex.lastIndex};
+      let position = { start: match.index, end: regex.lastIndex };
       matches.push(new URLMatch(matchedText, protocolUrlMatch, protocolRelativeMatch, position));
     }
   }
