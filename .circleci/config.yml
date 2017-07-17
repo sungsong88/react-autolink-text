@@ -22,7 +22,10 @@ jobs:
       - run:
           name: yarn-lint
           command: yarn lint
-      
+      - run:
+          name: yarn-coveralls
+          command: yarn coveralls
+
 workflows:
   version: 2
   test:
