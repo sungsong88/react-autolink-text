@@ -15,6 +15,13 @@
     "test": "jest",
     "lint": "eslint src/*.js test/*.js"
   },
+  "files": [
+    "lib/",
+    "src/",
+    "LICENSE.txt",
+    "package.json",
+    "README.md"
+  ],
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",
