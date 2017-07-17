@@ -26,8 +26,6 @@ export default class URLMatch {
      * {@link #url} did not have a protocol)
      */
     this.protocolPrepended = false;
-
-    this.stripPrefix = true;
   }
 
   /**
@@ -72,9 +70,7 @@ export default class URLMatch {
       // Strip off any protocol-relative '//' from the anchor text
       anchorText = this.stripProtocolRelativePrefix(anchorText);
     }
-    if(this.stripPrefix) {
-      anchorText = this.stripUrlPrefix(anchorText);
-    }
+    anchorText = this.stripUrlPrefix(anchorText); // remove URL prefix
     anchorText = this.removeTrailingSlash(anchorText);  // remove trailing slash, if there is one
 
     return anchorText;

@@ -11,18 +11,18 @@ export default class AutoLinkText extends PureComponent {
     matches.forEach((match) => {
       if (match.position.start !== 0) {
         elements.push(
-          React.createElement('span', { children: text.slice(lastIndex, match.position.start) })
+          React.createElement('span', {}, text.slice(lastIndex, match.position.start))
         );
       }
       elements.push(
-        React.createElement('a', { href: match.getAnchorHref(), children: match.getAnchorText() })
+        React.createElement('a', { href: match.getAnchorHref() }, match.getAnchorText())
       );
       lastIndex = match.position.end;
     });
 
     if (lastIndex < text.length) {
       elements.push(
-        React.createElement('span', { children: text.slice(lastIndex) })
+        React.createElement('span', {}, text.slice(lastIndex))
       );
     }
 
@@ -75,7 +75,7 @@ export default class AutoLinkText extends PureComponent {
       )
     );
 
-    return React.createElement('span', { children: keyedElements });
+    return React.createElement('span', {}, keyedElements);
   }
 }
 
