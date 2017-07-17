@@ -3,6 +3,7 @@
 
 [![npm](https://img.shields.io/npm/v/react-autolink-text2.svg)](https://www.npmjs.com/package/react-autolink-text2)
 [![CircleCI](https://circleci.com/gh/schneidmaster/react-autolink-text.svg?style=shield)](https://circleci.com/gh/schneidmaster/react-autolink-text)
+[![Coverage Status](https://coveralls.io/repos/github/schneidmaster/react-autolink-text/badge.svg?branch=master)](https://coveralls.io/github/schneidmaster/react-autolink-text?branch=master)
 
 A React component for converting URLs in a given string of text into clicking link tags.
 

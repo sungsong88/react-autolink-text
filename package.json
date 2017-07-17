@@ -13,7 +13,8 @@
     "examples": "webpack-dev-server --config examples/webpack.config.js --content-base examples --inline",
     "prepublish": "babel src --out-dir lib",
     "test": "jest",
-    "lint": "eslint src/*.js test/*.js"
+    "lint": "eslint src/*.js test/*.js",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "files": [
     "lib/",
@@ -22,12 +23,16 @@
     "package.json",
     "README.md"
   ],
+  "jest": {
+    "collectCoverage": true
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^2.13.1",
     "eslint": "^4.0.0",
     "html-webpack-plugin": "^2.29.0",
     "jest": "^20.0.4",
