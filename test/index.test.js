@@ -7,7 +7,10 @@ import AutoLinkText from '../src';
 describe('<AutoLinkText />', () => {
   function renderText(text, props = {}) {
     return ReactDOMServer.renderToStaticMarkup(
-      React.createElement(AutoLinkText, Object.assign({}, props, { text }))
+      <AutoLinkText
+        text={text}
+        {...props}
+      />
     );
   }
 
@@ -88,6 +91,30 @@ describe('<AutoLinkText />', () => {
       expect(
         renderText('Joe visited //opengov.com this morning')
       ).toBe('<span><span>Joe visited </span><a href="//opengov.com">opengov.com</a><span> this morning</span></span>');
+    });
+
+    it('should automatically add protocol to URLs', () => {
+      expect(
+        renderText('Joe visited opengov.com this morning')
+      ).toBe('<span><span>Joe visited </span><a href="http://opengov.com">opengov.com</a><span> this morning</span></span>');
+    });
+
+    it('should strip trailing slash from anchor text', () => {
+      expect(
+        renderText('Joe visited https://www.opengov.com/ this morning')
+      ).toBe('<span><span>Joe visited </span><a href="https://www.opengov.com/">opengov.com</a><span> this morning</span></span>');
+    });
+
+    it('links URL without leading or trailing text', () => {
+      expect(
+        renderText('https://www.opengov.com')
+      ).toBe('<span><a href="https://www.opengov.com">opengov.com</a></span>');
+    });
+
+    it('defaults to blank text', () => {
+      expect(
+        renderText(null)
+      ).toBe('<span></span>');
     });
   });
 

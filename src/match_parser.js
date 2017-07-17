@@ -51,7 +51,7 @@ const urlRegex = [
 ].join('');
 /* eslint-enable indent */
 
-export default function(text='') {
+export default function(text) {
   const regex = new RegExp(urlRegex, 'gi');
   const matches = [];
 
