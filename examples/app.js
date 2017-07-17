@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import AutoLinkText from 'react-autolink-text2';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = { text: '' };
   }
 
   _onTextChange(e) {
-    this.setState({text: e.target.value});
+    this.setState({ text: e.target.value });
   }
 
   render() {
@@ -22,4 +22,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const rootDiv = document.createElement('div');
+document.body.appendChild(rootDiv);
+ReactDOM.render(<App />, rootDiv);

@@ -1,4 +1,15 @@
 /**
+ * A regular expression used to remove the 'http://' or 'https://' and/or the 'www.' from URLs.
+ */
+const URL_PREFIX_REGEX = /^(https?:\/\/)?(www\.)?/i;
+
+/**
+ * The regular expression used to remove the protocol-relative '//' from the {@link #url} string, for purposes
+ * of {@link #getAnchorText}. A protocol-relative URL is, for example, "//yahoo.com"
+ */
+const PROTOCOL_RELATIVE_REGEX = /^\/\//;
+
+/**
  * @class Autolinker.match.Url
  *
  * Represents a Url match found in an input string which should be Autolinked.
@@ -9,26 +20,15 @@ export default class URLMatch {
     this._protocolUrlMatch = protocolUrlMatch;
     this._protocolRelativeMatch = protocolRelativeMatch;
     this.position = position;
+
+    /**
+     * Will be set to `true` if the 'http://' protocol has been prepended to the {@link #url} (because the
+     * {@link #url} did not have a protocol)
+     */
+    this.protocolPrepended = false;
+
+    this.stripPrefix = true;
   }
-
-  /**
-   * A regular expression used to remove the 'http://' or 'https://' and/or the 'www.' from URLs.
-   */
-  urlPrefixRegex = /^(https?:\/\/)?(www\.)?/i;
-
-  /**
-   * The regular expression used to remove the protocol-relative '//' from the {@link #url} string, for purposes
-   * of {@link #getAnchorText}. A protocol-relative URL is, for example, "//yahoo.com"
-   */
-  protocolRelativeRegex = /^\/\//;
-
-  /**
-   * Will be set to `true` if the 'http://' protocol has been prepended to the {@link #url} (because the
-   * {@link #url} did not have a protocol)
-   */
-  protocolPrepended = false;
-
-  stripPrefix = true;
 
   /**
    * Returns the url that was matched, assuming the protocol to be 'http://' if the original
@@ -93,7 +93,7 @@ export default class URLMatch {
    * @return {String} The `anchorText`, with the prefix stripped.
    */
   stripUrlPrefix(text) {
-    return text.replace(this.urlPrefixRegex, '');
+    return text.replace(URL_PREFIX_REGEX, '');
   }
 
   /**
@@ -105,7 +105,7 @@ export default class URLMatch {
    * @return {String} The `anchorText`, with the protocol-relative prefix stripped.
    */
   stripProtocolRelativePrefix(text) {
-    return text.replace(this.protocolRelativeRegex, '');
+    return text.replace(PROTOCOL_RELATIVE_REGEX, '');
   }
 
   /**
