@@ -1,3 +1,8 @@
+v3.2.0
+------
+### Other changes
+- Support for React 16
+
 v3.1.0
 ------
 ### Other changes

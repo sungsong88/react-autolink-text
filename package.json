@@ -1,6 +1,6 @@
 {
   "name": "react-autolink-text2",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "A React component for converting URLs in a given string of text into clicking link tags.",
   "main": "lib/index.js",
   "repository": {
@@ -28,7 +28,8 @@
     "collectCoverage": true
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
@@ -37,17 +38,17 @@
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
     "html-webpack-plugin": "^2.29.0",
-    "jest": "^20.0.4",
-    "react": "^0.14.9 || ^15.3.0",
-    "react-dom": "^0.14.9 || ^15.3.0",
+    "jest": "^21.2.1",
+    "react": "^0.14.9 || ^15.3.0 || ^16.0.0",
+    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0",
     "regenerator-runtime": "^0.10.5",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "prop-types": "^0.14.9 || ^15.3.0"
+    "prop-types": "^0.14.9 || ^15.3.0 || ^16.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14.9 || ^15.3.0"
+    "react": "^0.14.9 || ^15.3.0 || ^16.0.0"
   }
 }
