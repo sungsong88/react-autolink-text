@@ -13,6 +13,9 @@ const wwwRegex = /(?:www\.)/;
 // anything looking at all like a domain, non-unicode domains, not ending in a period
 const domainNameRegex = /[A-Za-z0-9.-]*[A-Za-z0-9-]/;
 
+// anything looking like an email address
+const mailboxRegex = /(?:(?:[^<>()\\[\]\\.,;:\s@"]+(?:\.[^<>()\\[\]\\.,;:\s@"]+)*)|(?:".+"))@(?:(?:\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(?:(?:[a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+
 // match our known top level domains (TLDs)
 const tldRegex = /\.(?:international|construction|contractors|enterprises|photography|productions|foundation|immobilien|industries|management|properties|technology|christmas|community|directory|education|equipment|institute|marketing|solutions|vacations|bargains|boutique|builders|catering|cleaning|clothing|computer|democrat|diamonds|graphics|holdings|lighting|partners|plumbing|supplies|training|ventures|academy|careers|company|cruises|domains|exposed|flights|florist|gallery|guitars|holiday|kitchen|neustar|okinawa|recipes|rentals|reviews|shiksha|singles|support|systems|agency|berlin|camera|center|coffee|condos|dating|estate|events|expert|futbol|kaufen|luxury|maison|monash|museum|nagoya|photos|repair|report|social|supply|tattoo|tienda|travel|viajes|villas|vision|voting|voyage|actor|build|cards|cheap|codes|dance|email|glass|house|mango|ninja|parts|photo|shoes|solar|today|tokyo|tools|watch|works|aero|arpa|asia|best|bike|blue|buzz|camp|club|cool|coop|farm|fish|gift|guru|info|jobs|kiwi|kred|land|limo|link|menu|mobi|moda|name|pics|pink|post|qpon|rich|ruhr|sexy|tips|vote|voto|wang|wien|wiki|zone|bar|bid|biz|cab|cat|ceo|com|edu|gov|int|kim|mil|net|onl|org|pro|pub|red|tel|uno|wed|xxx|xyz|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw)\b/;
 
@@ -25,6 +28,13 @@ const charBeforeProtocolRelMatchRegex = /^(.)?\/\//;
 /* eslint-disable indent */
 const urlRegex = [
   '(?:', // parens to cover match for protocol (optional), and domain
+
+    '(',  // *** Capturing group $1, for a protocol-prefixed url (ex: http://google.com)
+      protocolRegex.source,
+      mailboxRegex.source,
+    ')',
+    '|',
+
     '(',  // *** Capturing group $1, for a protocol-prefixed url (ex: http://google.com)
       protocolRegex.source,
       domainNameRegex.source,
@@ -57,7 +67,7 @@ export default function(text, disableUrlStripping = false) {
 
   var match;
   while ((match = regex.exec(text)) !== null) {
-    let [matchedText, protocolUrlMatch, wwwProtocolRelativeMatch, tldProtocolRelativeMatch] = match;
+    let [matchedText, protocolMailtoMatch, protocolUrlMatch, wwwProtocolRelativeMatch, tldProtocolRelativeMatch] = match;
     const protocolRelativeMatch = wwwProtocolRelativeMatch || tldProtocolRelativeMatch;
 
     // If it's a protocol-relative '//' match, remove the character
@@ -76,7 +86,7 @@ export default function(text, disableUrlStripping = false) {
 
     if (isValidMatch(matchedText, protocolUrlMatch, protocolRelativeMatch)) {
       let position = { start: match.index, end: regex.lastIndex };
-      matches.push(new URLMatch(matchedText, protocolUrlMatch, protocolRelativeMatch, position, disableUrlStripping));
+      matches.push(new URLMatch(matchedText, protocolMailtoMatch, protocolUrlMatch, protocolRelativeMatch, position, disableUrlStripping));
     }
   }
 

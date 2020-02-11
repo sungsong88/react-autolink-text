@@ -116,6 +116,12 @@ describe('<AutoLinkText />', () => {
         renderText('https://www.opengov.com', { disableUrlStripping: true })
       ).toBe('<span><a href="https://www.opengov.com">https://www.opengov.com</a></span>');
     });
+    
+    it('links mailto without leading text', () => {
+      expect(
+        renderText('mailto:joe@opengov.com')
+      ).toEqual('<span><a href="mailto:joe@opengov.com">joe@opengov.com</a></span>');
+    });
 
     it('defaults to blank text', () => {
       expect(
