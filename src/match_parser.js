@@ -51,7 +51,7 @@ const urlRegex = [
 ].join('');
 /* eslint-enable indent */
 
-export default function(text, raw = false) {
+export default function(text, disableUrlStripping = false) {
   const regex = new RegExp(urlRegex, 'gi');
   const matches = [];
 
@@ -76,7 +76,7 @@ export default function(text, raw = false) {
 
     if (isValidMatch(matchedText, protocolUrlMatch, protocolRelativeMatch)) {
       let position = { start: match.index, end: regex.lastIndex };
-      matches.push(new URLMatch(matchedText, protocolUrlMatch, protocolRelativeMatch, position, raw));
+      matches.push(new URLMatch(matchedText, protocolUrlMatch, protocolRelativeMatch, position, disableUrlStripping));
     }
   }
 

@@ -25,8 +25,8 @@ ReactDOM.render(
 ```
 
 ### Props
-
 * `text` (string) -- text to be autolinked
+* `[disableUrlStripping]` (boolean) -- optional bypass of anchor text stripping
 * `[maxLength]` (number) -- optional max text length, after which the provided text will be truncated
 * `[linkProps]` (object) -- optional props to be set on generated link elements (`target='_blank'`, `rel='nofollow'`, custom classes, etc.)
 

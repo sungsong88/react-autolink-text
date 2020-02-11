@@ -113,7 +113,7 @@ describe('<AutoLinkText />', () => {
 
     it('optionally disables anchor text modification', () => {
       expect(
-        renderText('https://www.opengov.com', { raw: true })
+        renderText('https://www.opengov.com', { disableUrlStripping: true })
       ).toBe('<span><a href="https://www.opengov.com">https://www.opengov.com</a></span>');
     });
 

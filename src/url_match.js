@@ -15,12 +15,12 @@ const PROTOCOL_RELATIVE_REGEX = /^\/\//;
  * Represents a Url match found in an input string which should be Autolinked.
  */
 export default class URLMatch {
-  constructor(url, protocolUrlMatch, protocolRelativeMatch, position, raw) {
+  constructor(url, protocolUrlMatch, protocolRelativeMatch, position, disableUrlStripping) {
     this._url = url;
     this._protocolUrlMatch = protocolUrlMatch;
     this._protocolRelativeMatch = protocolRelativeMatch;
     this.position = position;
-    this.raw = raw;
+    this.disableUrlStripping = disableUrlStripping;
     /**
      * Will be set to `true` if the 'http://' protocol has been prepended to the {@link #url} (because the
      * {@link #url} did not have a protocol)
@@ -66,7 +66,7 @@ export default class URLMatch {
   getAnchorText() {
     var anchorText = this.getUrl();
 
-    if(this.raw) {
+    if(this.disableUrlStripping) {
       return anchorText;
     }
 
