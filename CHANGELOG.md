@@ -1,3 +1,9 @@
+v3.3.0
+------
+### Other changes
+- Adds better support for detecting mailto links (#14)
+- Adds support for skipping the protocol stripping on link text with `disableUrlStripping` prop (#15)
+
 v3.2.0
 ------
 ### Other changes
