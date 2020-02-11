@@ -73,7 +73,7 @@ export default class AutoLinkText extends PureComponent {
       this.keyElements(
         this.truncate(
           this.prepareElements(
-            matchParser(text), text
+            matchParser(text, this.props.raw), text
           )
         )
       )
@@ -84,6 +84,7 @@ export default class AutoLinkText extends PureComponent {
 }
 
 AutoLinkText.propTypes = {
+  raw:  PropTypes.bool,
   text: PropTypes.string,
   linkProps: PropTypes.object,
   maxLength: PropTypes.oneOfType([
