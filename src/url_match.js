@@ -4,6 +4,11 @@
 const URL_PREFIX_REGEX = /^(https?:\/\/)?(www\.)?/i;
 
 /**
+ * A regular expression used to remove the 'mailto:' from URLs.
+ */
+const MAILTO_PREFIX_REGEX = /^mailto:/;
+
+/**
  * The regular expression used to remove the protocol-relative '//' from the {@link #url} string, for purposes
  * of {@link #getAnchorText}. A protocol-relative URL is, for example, "//yahoo.com"
  */
@@ -15,8 +20,9 @@ const PROTOCOL_RELATIVE_REGEX = /^\/\//;
  * Represents a Url match found in an input string which should be Autolinked.
  */
 export default class URLMatch {
-  constructor(url, protocolUrlMatch, protocolRelativeMatch, position) {
+  constructor(url, protocolMailtoMatch, protocolUrlMatch, protocolRelativeMatch, position) {
     this._url = url;
+    this._protocolMailtoMatch = protocolMailtoMatch;
     this._protocolUrlMatch = protocolUrlMatch;
     this._protocolRelativeMatch = protocolRelativeMatch;
     this.position = position;
@@ -38,7 +44,7 @@ export default class URLMatch {
     let url = this._url;
 
     // if the url string doesn't begin with a protocol, assume 'http://'
-    if( !this._protocolRelativeMatch && !this._protocolUrlMatch && !this.protocolPrepended ) {
+    if( !this._protocolMailtoMatch && !this._protocolRelativeMatch && !this._protocolUrlMatch && !this.protocolPrepended ) {
       url = this._url = 'http://' + url;
 
       this.protocolPrepended = true;
@@ -70,6 +76,11 @@ export default class URLMatch {
       // Strip off any protocol-relative '//' from the anchor text
       anchorText = this.stripProtocolRelativePrefix(anchorText);
     }
+
+    if(this._protocolMailtoMatch) {
+      anchorText = this.stripMailtoPrefix(anchorText);
+    }
+
     anchorText = this.stripUrlPrefix(anchorText); // remove URL prefix
     anchorText = this.removeTrailingSlash(anchorText);  // remove trailing slash, if there is one
 
@@ -90,6 +101,18 @@ export default class URLMatch {
    */
   stripUrlPrefix(text) {
     return text.replace(URL_PREFIX_REGEX, '');
+  }
+
+  /**
+   * Strips the "mailto:" from the anchor text.
+   *
+   * @private
+   * @param {String} text The text of the anchor that is being generated, for which to strip off the
+   *   url prefix (such as stripping off "mailto:")
+   * @return {String} The `anchorText`, with the prefix stripped.
+   */
+  stripMailtoPrefix(text) {
+    return text.replace(MAILTO_PREFIX_REGEX, '');
   }
 
   /**
