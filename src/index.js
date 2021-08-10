@@ -14,11 +14,22 @@ export default class AutoLinkText extends PureComponent {
           React.createElement('span', {}, text.slice(lastIndex, match.position.start))
         );
       }
+
+      const paths = match.getAnchorText().split("\/");
+      const refinedPaths = paths.reduce((acc, val, idx) => {
+        if(idx !== 0) {
+          acc.push(React.createElement('wbr'));
+        }
+        acc.push(React.createElement('span', {}, `${val}${idx !== paths.length - 1 ? "\/" : "" }`));
+
+        return acc;
+      }, []);
+
       elements.push(
         React.createElement(
           'a',
           Object.assign({}, { href: match.getAnchorHref() }, this.props.linkProps),
-          match.getAnchorText()
+          refinedPaths
         )
       );
       lastIndex = match.position.end;
